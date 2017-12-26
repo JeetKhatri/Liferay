@@ -2,8 +2,10 @@
 
 <portlet:defineObjects />
 
-<portlet:actionURL var="myaction">
+<portlet:actionURL var="myaction" name="myActionMethod">
 </portlet:actionURL>
+
+
 
 <b>First Generic portlet</b>
 

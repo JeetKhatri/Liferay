@@ -7,6 +7,8 @@ import javax.portlet.ActionResponse;
 import javax.portlet.GenericPortlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequestDispatcher;
+import javax.portlet.ProcessAction;
+import javax.portlet.RenderMode;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -23,22 +25,23 @@ public class firstGenericPortletDemo extends GenericPortlet {
         viewTemplate = getInitParameter("view-template");
     }
 
-    public void doView(
+    @RenderMode(name="VIEW")
+    public void myView(
             RenderRequest renderRequest, RenderResponse renderResponse)
         throws IOException, PortletException {
 
         include(viewTemplate, renderRequest, renderResponse);
-        System.out.println("view template : "+viewTemplate);
+       // System.out.println("view template : "+viewTemplate);
+       // view template : /html/firstgenericportletdemo/view.jsp <-- Default
     }
 
     
-    @Override
-    public void processAction(ActionRequest request, ActionResponse response) throws PortletException, IOException {
+    @ProcessAction(name="myActionMethod")
+    public void myActionMethod(ActionRequest request, ActionResponse response) throws PortletException, IOException {
     	
     	String name = request.getParameter("name");
     	String name1= ParamUtil.getString(request, "name");
-    	System.out.println(name+ " "+name1);
-    	
+    	System.out.println(name+ " -- "+name1);
     }
     
     protected void include(
