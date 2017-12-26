@@ -5,6 +5,9 @@
 <portlet:actionURL var="myaction" name="myActionMethod">
 </portlet:actionURL>
 
+<portlet:renderURL var="myRenderURL">
+	<portlet:param name="jspPage" value="/html/firstmvcdemo/greeting.jsp"/>
+</portlet:renderURL>
 
 <b>First MVC portlet</b>
 
@@ -13,3 +16,4 @@
 	<input type="submit">
 </form>
 
+<a href="${myRenderURL}">Click for greetings.</a>
