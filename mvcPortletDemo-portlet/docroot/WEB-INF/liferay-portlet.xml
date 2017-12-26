@@ -6,7 +6,7 @@
 	<portlet>
 		<portlet-name>first-mvc-demo</portlet-name>
 		<icon>/icon.png</icon>
-		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>   <!-- way 1 for handling namespace pro.-->
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>
 			/js/main.js
