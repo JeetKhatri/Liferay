@@ -54,4 +54,7 @@ Scenario:-  (two portlet A and B on single page)
 	
 -	Every portlet implement Portlet interface.
 -	Like portlet extends GenericPortlet and GenericPortlet implement Portlet, PortletConfig, EventPortlet etc. 
--	<requires-namespaced-parameters>false</requires-namespaced-parameters> required otherwise display null
+-	<requires-namespaced-parameters>false</requires-namespaced-parameters> required otherwise display null.
+
+MVC Portlet:-
+-	In java file there is no doView method needed because it already in the MVCPortlet class.
