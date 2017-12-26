@@ -30,7 +30,11 @@ public class firstGenericPortletDemo extends GenericPortlet {
             RenderRequest renderRequest, RenderResponse renderResponse)
         throws IOException, PortletException {
 
-        include(viewTemplate, renderRequest, renderResponse);
+    	String redirect = ParamUtil.getString(renderRequest, "redirect");
+    	if(redirect.equalsIgnoreCase("greetings"))
+    		include("/html/firstgenericportletdemo/greetings.jsp", renderRequest, renderResponse);
+    	else	
+    		include(viewTemplate, renderRequest, renderResponse);
        // System.out.println("view template : "+viewTemplate);
        // view template : /html/firstgenericportletdemo/view.jsp <-- Default
     }
@@ -41,8 +45,16 @@ public class firstGenericPortletDemo extends GenericPortlet {
     	
     	String name = request.getParameter("name");
     	String name1= ParamUtil.getString(request, "name");
-    	System.out.println(name+ " -- "+name1);
+    	System.out.println(name+ " || "+name1);
     }
+    
+/*    @ProcessAction(name="myGreetingMethod")
+    public void myGreetingMethod(ActionRequest request, ActionResponse response) throws PortletException, IOException {
+    	
+    	String name = request.getParameter("name");
+    	String name1= ParamUtil.getString(request, "name");
+    	System.out.println(name+ " || "+name1);
+    }*/
     
     protected void include(
             String path, RenderRequest renderRequest,

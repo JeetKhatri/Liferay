@@ -5,7 +5,9 @@
 <portlet:actionURL var="myaction" name="myActionMethod">
 </portlet:actionURL>
 
-
+<portlet:renderURL var="myRenderURL">
+	<portlet:param name="redirect" value="greetings"/>
+</portlet:renderURL>
 
 <b>First Generic portlet</b>
 
@@ -13,3 +15,5 @@
 	Name : <input type="text" name="name">
 	<input type="submit">
 </form>
+
+<a href="${myRenderURL}">Click for greetings.</a>
