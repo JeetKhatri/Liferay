@@ -1,0 +1,56 @@
+Liferay :-
+
+Modes in Liferay :-
+1) Default mode :   View, Edit, Help
+2) Other mode :     About, Config, print, Edit default, Edit guest, preview 
+                    (http://liferayiseasy.blogspot.in/2015/09/portlet-modes-in-liferay.html)  
+
+					
+Portlet Phases/JSR Specification :-
+-	Portlet 1.0(JSR 168)
+	1)	Render Phase   :   use for generating view like html
+	2)	Action Phase   :   use for state changing like submit form, update database
+(In 1.0 there is no feature like interportlet communication, resourse mgt, Ajax calling so 2.0 comes)	
+-	Portlet 2.0(JSR 268)
+	1)	Event Phase             :	Portlet response to event
+	2)	Resourse Service Phase	:	use for ajax calling like download pdf
+
+	
+Portlet interfaces :-
+1)	javax.portlet.Portlet
+	-	init
+	-	render
+	-	processAction
+	-	destroy
+2)	javax.portlet.EventPortlet
+	-	processEvent()
+3)	javax.portlet.ResourseServingPortlet  (for ajax)
+	-	serveResource
+	
+
+Portlet Url :-
+1)	Render URL
+2)	Action URL
+3)	Resourse URL   (for ajax)
+
+
+Lifecycle of Portlet :-
+-	init  (At time portlet deploy)
+-	render method(doView, doEdit, doHelp)
+-	processAction
+-	destroy (At time portlet destroy)
+
+
+Scenario:-  (two portlet A and B on single page)
+1)	Render request call for portlet A
+	-	render method is called for A and B portlet
+2)	Action Request from portlet A
+	-	action and render method of portlet A
+	-	render method of portlet B is called
+3)	call for serveResource in portlet A
+	-	no render method called for any portlet
+	-	serveResource method called for portlet A
+	
+	
+-	Every portlet implement Portlet interface.
+-	Like portlet extends GenericPortlet and GenericPortlet implement Portlet, PortletConfig, EventPortlet etc. 
