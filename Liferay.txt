@@ -62,3 +62,5 @@ namespaced-parameters :-
 -	so three ways to handle that.
 	1) <requires-namespaced-parameters>false</requires-namespaced-parameters> in liferay-portlet.xml file
 	2) <input type="text" name="<portlet:namespace/>name" id="<portlet:namespace/>name">
+	3) using aui tags
+-	check mvcPortletDemo-portlet OR git commit name : Till Tutorial 08 :- Name Space Parameter
