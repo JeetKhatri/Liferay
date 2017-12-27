@@ -37,6 +37,7 @@ public class RegistrationValidation extends MVCPortlet {
 			PortletConfig config = (PortletConfig) request.getAttribute(JavaConstants.JAVAX_PORTLET_CONFIG);
 			SessionMessages.add(request, ((LiferayPortletConfig)config).getPortletId() + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 			System.out.println("error msg");
+			request.setAttribute("bean", obj);
 		}
 	}
 
