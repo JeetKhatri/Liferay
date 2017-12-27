@@ -4,10 +4,16 @@ import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.ProcessAction;
 
+import org.apache.catalina.ha.session.SessionMessage;
+
+import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -27,6 +33,9 @@ public class RegistrationValidation extends MVCPortlet {
 		if (validation(obj, request)) {
 			System.out.println("successfully submited");
 		} else {
+			// next 2 lines for hiding default message
+			PortletConfig config = (PortletConfig) request.getAttribute(JavaConstants.JAVAX_PORTLET_CONFIG);
+			SessionMessages.add(request, ((LiferayPortletConfig)config).getPortletId() + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 			System.out.println("error msg");
 		}
 	}

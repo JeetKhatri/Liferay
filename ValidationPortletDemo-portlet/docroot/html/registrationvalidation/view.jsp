@@ -6,9 +6,9 @@
 <portlet:actionURL var="myaction" name="myActionMethod">
 </portlet:actionURL>
 
-<ui:error key="name.errorMsg.missing" message="Invalid name" />
-<ui:error key="email.errorMsg.missing" message="Invalid email" />
-<ui:error key="number.errorMsg.missing" message="Invalid number" />
+<ui:error key="name.errorMsg.missing" message="name.errorMsg.missing" />
+<ui:error key="email.errorMsg.missing" message="email.errorMsg.missing" />
+<ui:error key="number.errorMsg.missing" message="number.errorMsg.missing" />
 
 <b>Validation portlet</b>
 
