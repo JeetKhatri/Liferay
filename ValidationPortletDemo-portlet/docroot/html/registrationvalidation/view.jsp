@@ -7,9 +7,14 @@
 <portlet:actionURL var="myaction" name="myActionMethod">
 </portlet:actionURL>
 
-<ui:error key="name.errorMsg.missing" message="name.errorMsg.missing" />
-<ui:error key="email.errorMsg.missing" message="email.errorMsg.missing" />
-<ui:error key="number.errorMsg.missing" message="number.errorMsg.missing" />
+
+<jst:if test="${!empty errorList}">
+	<ul>
+		<jst:forEach items="${errorList }" var="error">
+				<li style="color: red" ><jst:out value="${error}" /></li>
+		</jst:forEach>
+	</ul>
+</jst:if>
 
 <b>Validation portlet</b>
 

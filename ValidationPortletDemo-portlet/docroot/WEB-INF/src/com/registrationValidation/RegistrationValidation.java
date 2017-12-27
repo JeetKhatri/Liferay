@@ -1,5 +1,8 @@
 package com.registrationValidation;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.io.IOException;
 
 import javax.portlet.ActionRequest;
@@ -16,6 +19,7 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.webdav.Resource;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 /**
@@ -30,7 +34,8 @@ public class RegistrationValidation extends MVCPortlet {
 		String email = ParamUtil.getString(request, "email");
 		String number = ParamUtil.getString(request, "number");
 		RegistrationBean obj = new RegistrationBean(name, number, email);
-		if (validation(obj, request)) {
+		ArrayList<String> list = validation(obj, request);
+		if (list.size()==0) {
 			System.out.println("successfully submited");
 		} else {
 			// next 2 lines for hiding default message
@@ -38,23 +43,24 @@ public class RegistrationValidation extends MVCPortlet {
 			SessionMessages.add(request, ((LiferayPortletConfig)config).getPortletId() + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 			System.out.println("error msg");
 			request.setAttribute("bean", obj);
+			request.setAttribute("errorList", list);
 		}
 	}
 
-	public boolean validation(RegistrationBean obj, ActionRequest request) {
-		boolean flag = true;
+	public ArrayList<String> validation(RegistrationBean obj, ActionRequest request) {
+		ArrayList<String> list = new ArrayList<>();
+
+		ResourceBundle bundle = getPortletConfig().getResourceBundle(request.getLocale());
+		
 		if (!Validator.isEmailAddress(obj.getEmail())) {
-			SessionErrors.add(request, "email.errorMsg.missing");
-			flag = false;
+			list.add(bundle.getString("email.errorMsg.missing"));
 		}  
 		if (!Validator.isName(obj.getName())) {
-			SessionErrors.add(request, "name.errorMsg.missing");
-			flag = false;
+			list.add(bundle.getString("name.errorMsg.missing"));
 		}  
 		if (!Validator.isPhoneNumber(obj.getNumber())) {
-			SessionErrors.add(request, "number.errorMsg.missing");
-			flag = false;
+			list.add(bundle.getString("number.errorMsg.missing"));
 		}
-		return flag;
+		return list;
 	}
 }
