@@ -6,4 +6,7 @@
 	<category name="category.myCategory">
 		<portlet id="language-demo"></portlet>
 	</category>
+	<category name="category.myCategory">
+		<portlet id="auto-detect-language"></portlet>
+	</category>
 </display>
