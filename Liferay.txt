@@ -55,7 +55,7 @@ Scenario:-  (two portlet A and B on single page)
 -	Every portlet implement Portlet interface.
 -	Like portlet extends GenericPortlet and GenericPortlet implement Portlet, PortletConfig, EventPortlet etc. 
 -	when we use MVC Portlet, In java file there is no doView method needed because it already in the MVCPortlet class.
-
+-	jstl tags only work in the view.jsp page.
 
 namespaced-parameters :-
 -	when we use 2 form with same parameter name so at the time of using java script it create problem.
