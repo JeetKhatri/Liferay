@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.sample.model.Employee">
+		<field name="eid" type="int" />
+		<field name="ename" type="String" />
+		<field name="ecountry" type="String" />
+	</model>
+</model-hints>

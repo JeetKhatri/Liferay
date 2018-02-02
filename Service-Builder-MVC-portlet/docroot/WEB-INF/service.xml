@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="com.liferay.sample">
+	<author>admin</author>
+	<namespace>SAMPLEE</namespace>
+
+	<entity name="Employee" local-service="true" remote-service="false"
+		table="employee_data_mvc1">
+		<column name="eid" type="int" primary="true" id-type="increment"></column>
+		<column name="ename" type="String"></column>
+		<column name="ecountry" type="String"></column>
+		<finder name="Ecountry" return-type="Collection">
+			<finder-column name="ecountry"></finder-column>
+		</finder>
+	</entity>
+	
+</service-builder>

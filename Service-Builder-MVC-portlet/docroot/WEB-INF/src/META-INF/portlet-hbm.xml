@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.sample.model.Employee" />
+	<class name="com.liferay.sample.model.impl.EmployeeImpl" table="employee_data_mvc1">
+		<cache usage="read-write" />
+		<id name="eid" type="int">
+			<generator class="increment" />
+		</id>
+		<property name="ename" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ecountry" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
