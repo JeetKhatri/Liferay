@@ -2,6 +2,8 @@ package com.test;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ProjectionList;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -43,7 +45,7 @@ public class ServiceBuilderUsingMVC extends MVCPortlet {
 			
 			
 			//dynamic query - 18
-			DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Employee.class, "emp", PortletClassLoaderUtil.getClassLoader());
+			/*DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Employee.class, "emp", PortletClassLoaderUtil.getClassLoader());
 			dynamicQuery.add(RestrictionsFactoryUtil.ne("emp.ecountry", "india"));
 												//OR
 			//dynamicQuery.add(PropertyFactoryUtil.forName("emp.ecountry").ne("india"));
@@ -51,8 +53,29 @@ public class ServiceBuilderUsingMVC extends MVCPortlet {
 			System.out.println("Other Country's employee : "+otherCountryEmpList.size()+"\nDetails:-");
 			for (Employee employee : otherCountryEmpList) {
 				System.out.println(employee.getEname()+"\t"+employee.getEcountry());
+			}*/
+			
+			
+			// 19  -  projection : use for get specific column data not all column
+			DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Employee.class, "emp", PortletClassLoaderUtil.getClassLoader());
+			dynamicQuery.add(RestrictionsFactoryUtil.ne("emp.ecountry", "india"));
+						// For only 1 column
+			//dynamicQuery.setProjection(PropertyFactoryUtil.forName("emp.ename"));
+						// More than 1 column
+			ProjectionList plist = ProjectionFactoryUtil.projectionList();
+			plist.add(PropertyFactoryUtil.forName("emp.ename"));
+			plist.add(PropertyFactoryUtil.forName("emp.ecountry"));
+			dynamicQuery.setProjection(plist);
+			List<Object[]> otherCountryEmpList = EmployeeLocalServiceUtil.dynamicQuery(dynamicQuery); 
+			System.out.println("Other Country's employee : "+otherCountryEmpList.size()+"\nDetails:-");
+			for (Object employee[] : otherCountryEmpList) {
+				System.out.println(employee[0]+"\t"+employee[1]);
 			}
 			
+			
+			/* Order   ::>
+			   plist.addOrder(OrderFactoryUtil.desc("emp.eid"));
+			*/
 			
 		} catch (SystemException e) {
 			e.printStackTrace();
