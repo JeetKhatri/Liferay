@@ -12,6 +12,7 @@
 		<finder name="Ecountry" return-type="Collection">
 			<finder-column name="ecountry"></finder-column>
 		</finder>
+		
 	</entity>
 	
 </service-builder>
