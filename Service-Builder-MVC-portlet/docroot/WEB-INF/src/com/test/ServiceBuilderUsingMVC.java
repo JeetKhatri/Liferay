@@ -23,12 +23,12 @@ public class ServiceBuilderUsingMVC extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
 
-		Employee obj =new EmployeeImpl();
+		/*Employee obj =new EmployeeImpl();
     	obj.setEid(1);
     	obj.setEname("darshil");
-    	obj.setEcountry("US");
+    	obj.setEcountry("US");*/
     	try {
-			EmployeeLocalServiceUtil.addEmployee(obj);
+			//EmployeeLocalServiceUtil.addEmployee(obj);
 			System.out.println(EmployeeLocalServiceUtil.getEmployee(1).getEname());
 			System.out.println("Total employee : "+EmployeeLocalServiceUtil.getEmployeesCount());
 			System.out.println("Total Indian employee : "+EmployeeLocalServiceUtil.findByEcountry("india").size());

@@ -1,21 +1,146 @@
-Liferay :-
+3 types of liferay roles :-
+1) liferay developer
+2) liferay administrator
+3) liferay designer   ????????
 
+
+------------------------------------------------------------
+create custom field (resourse named page) = expando
+------------------------------------------------------------
+
+Liferay Portal :-
+
+
+Configuration inside control_panel :-
+
+A)	Portal setting
+	1)	General
+		-	Virtual Host	:	hosting address, where your site is hosted
+		-	Home URL		:	can change the home url like /web/guest/login, but default is /web/guest/home
+		-	CDN Host 		:	(content delivery network) ADV - splitting load,faster then network,time decreases and performance increases
+								if we don't use CDN then even in the page refresh we make only one request but internally it load all the content and make many req
+								like load images etc. we can see that in the chrome F12 then network then refresh the page.
+		-	Default Landing Page	:	when we logged in then which page call we can set.
+		-	Default Logout Page		:	when we logged out then which page call we can set.
+		
+	2)	Authentication
+		-	How do users authenticate?	:	user can log in using email,username,userid
+		-	2nd checkbox	:	new password sent to to their email address.
+		-	3rd checkbox	:	password reset link sent to their email address.
+		
+B)	custom fields	:	we can add custom fields.
+						Ex : add it in page so when we create page then we can set it.
+	
+	
+C)	Server Administration
+	1)	Resources
+		-	Run the garbage collector					: 	You can send in a request to the JVM to begin the garbage collection task.
+		-	Clear content cached by this VM				: 	You can send in a request to the JVM to clear content stored in the local cache. 
+															Ehcache usage is split into two groups: 
+															1)	local JVM scope 
+															2)	cluster scope
+															This action only clears the content of the local Ehcache.
+		
+		-	Clear content cached across the cluster		:	cluster means group of server.
+															You can send in a request to the JVM to clear content cached across the entire cluster. 
+															This action clears the content of the clustered Ehcache.
+		
+		-	Clear the direct servlet cache	:	-	If it is true then if we change in jsp suppose changes in the content of page then we must execute this.
+												-	otherwise changes will not execute.
+												-	The direct servlet context is a feature that optimizes JSP serving performance by caching and accessing the 
+												generated servlets directly instead of accessing them over the application server’s dispatcher chain. 
+												-	This is only suitable for cases where no changes is required for the JSPs. 
+												-	For production mode, this cache should be enabled to improve performance. 
+												-	In case emergency fixes need to be applied, this action allows an administrator to manually clear out the cache to force JSPs to reload. 
+												-	For development mode, the direct servlet context should be disabled to allow JSP servlets to be reloaded on the fly. 
+												-	See the Direct Servlet Context section of the portal.properties files for details.
+		
+		-	Reindex all search indexes	:	-	You can send in a request to regenerate all search indexes. 
+											-	If you are executing this then it will impact portal performance so try to do this at non-peak times.
+											-	We can execute this at the time of corruption of the indexes
+		
+		-	Reindex all spell check indexes	:	same as above
+		-	Reset preview and thumbnail files for the Documents and Media portlet
+		
+		-	Generate Thread Dump	: 	If you are doing performance testing, you can generate a thread dump which can be examined later to determine,
+										if there are any deadlocks in the system or is there any possibility of the deadlock or not.
+										
+		-	Verify database tables of all plugins	:	You can check all tables against their indexes for accuracy of data retrieval.
+														It will check whether the index are corrupt or not
+			
+		-	Verify Membership Policies	:	-	It will check that existing site membership policies have been correctly applied/correct or not. 
+											-	Ex:	suppose that someone manually changed the Liferay database or that the Liferay database was hacked, 
+													resulting in a user being assigned to a site in violation of a site membership policy. 
+											-	When the Verify Membership Policies button is clicked, the verify methods of all the site membership policies that have been implemented are triggered. 
+											-	These methods check that all site memberships are in according with the site membership policies; if they are not, the necessary changes (such as removing users from forbidden sites) are made. 
+			
+		-	Clean up Permissions	: 	This process removes the assignment of some permissions on the Guest, User, and Power User roles.
+										Notably, the “Add To Page” permissions is removed from the Guest and User roles for all portlets. 
+										Likewise, the same permission is reduced in scope for Power Users from portal wide to scoped to “User Personal Site.”	
+										
+										
+	2)	Log Level:-
+		-	Modes of Logger(log4j):-
+			1) info
+			2) debug
+			3) error
+	
+	3)	Mail :-
+		-	Legalwiz uses sendgrid
+			-	If uses java api
+			-	mail format
+			-	alias email
+			-	hide a/c and security
+			-	too many mail send from 1 account so google send it to spam so if we use this then it will not go into spam.
+		-	Email server:-
+			-	pop  (Incoming)
+			-	imap
+			-	smtp  (Outgoing)
+	4)	Shutdown :-
+		-	when the website goes for maintenance before that we use this so website show at this time website goes into the maintenance state.
+		-	Mostly we can see this in the government site
+		
+
+D)	Portal Instances :-
+	-	liferay Portal allows you to run more than one portal instance on a single server. 
+	-	The Portal Instances section of the Control Panel appears under the Configuration heading. 
+	-	This section lets you manage multiple portal instances from a single Liferay installation. 
+	-	Each portal instance’s data is kept separate from every other portal instance’s data. 
+	-	All portal data, however, is kept in the same database.
+	
+E)	Work-flow :-
+	-	Life-ray by default uses Kalio work-flow which is single approver means 1 level.
+	-	Ex. If you want to leave from office then you contact with your sir and sir accept/reject leave.
+	-	Legalwiz needs multilevel approver system.
+	-	Multilevel means If you want to leave from office then you contact with your sir, sir will again contact with his boss then accept/reject leave.
+	-	activity workflow  is a Multilevel approver system.
+	
+	
+Liferay Protal : https://www.youtube.com/watch?v=YvvghlQsMVA
+
+
+
+JSR (Java Portlet Specification) :-
+-	The Java Portlet Specification defines a contract between the portlet container and portlets and provides a convenient model for Java portlet developers.
+-	JSR 168
+	-	The Java Portlet Specification V1.0 was developed under the Java Community Process as Java Specification Request JSR 168.
+	-	two phases of action processing and rendering in order to support the Model-View-Controller pattern.
+-	JSR 268
+	-	JSR-286 is the Java Portlet specification v2.0 as developed under the JCP 
+	-	It was developed to improve on the short-comings on version 1.0 of the specification.
+	-	Detributed and deplyed as war file
+	-	Inter-Portlet Communication through events and public render parameters
+	-	Serving dynamically generated resources directly through portlets
+	-	Serving AJAX or JSON data directly through portlets
+	-	Introduction of portlet filters and listeners
+
+	
 Modes in Liferay :-
 1) Default mode :   View, Edit, Help
 2) Other mode :     About, Config, print, Edit default, Edit guest, preview 
                     (http://liferayiseasy.blogspot.in/2015/09/portlet-modes-in-liferay.html)  
 
 					
-Portlet Phases/JSR Specification :-
--	Portlet 1.0(JSR 168)
-	1)	Render Phase   :   use for generating view like html
-	2)	Action Phase   :   use for state changing like submit form, update database
-(In 1.0 there is no feature like interportlet communication, resourse mgt, Ajax calling so 2.0 comes)	
--	Portlet 2.0(JSR 268)
-	1)	Event Phase             :	Portlet response to event
-	2)	Resourse Service Phase	:	use for ajax calling like download pdf
-
-	
 Portlet interfaces :-
 1)	javax.portlet.Portlet
 	-	init
@@ -29,9 +154,10 @@ Portlet interfaces :-
 	
 
 Portlet Url :-
-1)	Render URL
-2)	Action URL
-3)	Resourse URL   (for ajax)
+1)	Render URL		:	renderURL is used for communication between two jsp pages and you can send parameter also in the render url.
+2)	Action URL		:	actionURL is used for form saving on the server side and you can send parameter to the server side .
+3)	Resourse URL   	:	resourseURL is basically used for ajax call , upload image , display image , json etc.
+
 
 
 Lifecycle of Portlet :-
@@ -56,6 +182,7 @@ Scenario:-  (two portlet A and B on single page)
 -	Like portlet extends GenericPortlet and GenericPortlet implement Portlet, PortletConfig, EventPortlet etc. 
 -	when we use MVC Portlet, In java file there is no doView method needed because it already in the MVCPortlet class.
 -	jstl tags only work in the view.jsp page.
+
 
 namespaced-parameters :-
 -	when we use 2 form with same parameter name so at the time of using java script it create problem.
