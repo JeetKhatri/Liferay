@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="com.liferay.sample">
+	<author>admin</author>
+	<namespace>SAMPLE</namespace>
+	<entity local-service="true" name="Student" remote-service="false"
+		table="student">
+		<column name="sid" type="int" primary="true" id-type="increment"></column>
+		<column name="sname" type="String"></column>
+		<column name="sgender" type="int"></column>   <!-- 1 for male 2 for woman -->
+		<column name="snumber" type="String"></column>
+	</entity>
+	
+	<entity name="StudentAddress" local-service="true"
+		remote-service="false" table="student_address">
+		<column name="addressId" type="int" primary="true" id-type="increment"></column>
+		<column name="city" type="String"></column>
+		<column name="country" type="String"></column>
+        <column name="sid" type="int"></column>
+	</entity>
+
+</service-builder>

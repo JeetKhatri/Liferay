@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.sample.model.Student">
+		<field name="sid" type="int" />
+		<field name="sname" type="String" />
+		<field name="sgender" type="int" />
+		<field name="snumber" type="String" />
+	</model>
+	<model name="com.liferay.sample.model.StudentAddress">
+		<field name="addressId" type="int" />
+		<field name="city" type="String" />
+		<field name="country" type="String" />
+		<field name="sid" type="int" />
+	</model>
+</model-hints>
